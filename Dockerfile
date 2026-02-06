@@ -8,4 +8,5 @@ RUN R -e "install.packages(c('renv', 'remotes'), repos = 'https://cran.rstudio.c
 COPY renv.lock renv.lock
 COPY renv/ renv/
 
+# restoring dependencies based on renv.lock --> minor comment to trigger workflow
 RUN R -e "renv::restore()"
