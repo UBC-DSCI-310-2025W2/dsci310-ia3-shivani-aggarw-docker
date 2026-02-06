@@ -30,7 +30,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag dsci310-ia3-shivani-aggarw-docker/dockerfile-practice:latest
+      run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/dsci310-ia3-shivani-aggarw-docker/dockerfile-practice:latest
 
     - name: Push the Docker image
-      run: docker push dsci310-ia3-shivani-aggarw-docker/dockerfile-practice:latest
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/dsci310-ia3-shivani-aggarw-docker/dockerfile-practice:latest
