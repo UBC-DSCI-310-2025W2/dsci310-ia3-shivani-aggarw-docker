@@ -1,0 +1,36 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+    - 'Dockerfile'
+    - 'renv.lock'
+    - 'renv/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+    - 'Dockerfile'
+    - 'renv.lock'
+    - 'renv/**'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Login to Docker Hub
+      uses: docker/login-activity@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag dsci310-ia3-shivani-aggarw-docker/dockerfile-practice:latest
+
+    - name: Push the Docker image
+      run: docker push dsci310-ia3-shivani-aggarw-docker/dockerfile-practice:latest
