@@ -10,3 +10,5 @@ COPY renv/ renv/
 
 # restoring dependencies based on renv.lock --> minor comment to trigger workflow
 RUN R -e "renv::restore()"
+
+# triggering workflow
